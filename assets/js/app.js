@@ -4,7 +4,7 @@ function Question(ask, answer, correct) {
     this.correct = correct;
 };
 
-var q1 = new Question("What is the capital of Florida", ["Tallahase", "Orlando", "Miami", "Tampa"], "Tallahase");
+var q1 = new Question("What is the capital of Florida", ["Tallahasse", "Orlando", "Miami", "Tampa"], "Tallahasse");
 
 var q2 = new Question("Did Raging Al just Beat the Fuck out of Kevin Lee?", ["Yes", "Yes", "Yes", "Hell Yes"], "Hell Yes");
 
@@ -29,10 +29,13 @@ var game = {
 
     // Methods
     displayQuestion: function(){
+
         if (this.whichQuestion < this.questionArray.length) {
+            $(".answerButtons").show();
             $(".question").text(this.questionArray[this.whichQuestion].ask);
             for (var i = 0; i < this.buttons.length; i++){
                 $("#" + this.buttons[i]).text(this.questionArray[this.whichQuestion].answer[i]);
+                // had to use js not jq because it was triggering more than one click. probably from how jq handles class tags and on click
                 document.getElementById(this.buttons[i]).addEventListener("click", this.checkAnswer);
             };
     
@@ -41,11 +44,11 @@ var game = {
         
             this.timer = setInterval(function(){
                 if (timeLeft <=0) {
-                    clearInterval(this.timer);
+                    clearInterval(game.timer);
                     console.log("ran out of time");
                     // ran out of time
-                    this.whichQuestion++;
-                    this.between();
+                    game.whichQuestion++;
+                    game.between();
                 } else {
                     timeLeft = timeLeft - 1;
                     $(".timer").text(timeLeft);
@@ -55,6 +58,7 @@ var game = {
     
         } else {
             console.log("doingNothing")
+            $(".question").text("Game is over");
         }
 
     },
@@ -88,6 +92,7 @@ var game = {
     },
 
     between: function() {
+        $(".answerButtons").hide();
         if (game.wasRight) {
             $(".question").text("You were Right!");
             $(".answer").text("");
@@ -101,4 +106,16 @@ var game = {
         }, 3000)
     },
 
+    startGame: function() {
+        $(".topSection").fadeIn();
+        $(".questionArea").fadeIn();
+        $(".answerButtons").attr("class", "answerButtons");
+        $("#startButton").hide();
+
+        game.displayQuestion();
+    }
+
 } //End of object
+
+
+$("#startButton").on("click", game.startGame);
