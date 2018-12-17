@@ -1,0 +1,81 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #666;
+    user-select: none;
+}
+
+h1, h2, h3, h4, h5, h6, p{
+    margin: 0;
+    padding: 0;
+}
+
+header h1{
+    text-align: center;
+}
+
+/* --------------Container---------------- */
+
+.gameBox{
+    width: 600px;
+    margin: 10vh auto;
+    height: 450px;
+    border: 1px black solid;
+    position: relative;
+}
+
+.sectionTitle{
+    text-align: center;
+    padding: 5px 10px;
+    border-bottom: 2px black solid;
+}
+
+.questionArea{
+    width: 90%;
+    margin: 2em auto 0 auto;
+    
+}
+
+.question{
+    font-size: 25px;
+}
+
+.answerButtons{
+    text-align: center;
+    display: grid;
+    align-items: center;
+    justify-content: space-evenly;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    position: absolute;
+    bottom: 20px;
+    width: 90%;
+    height: 200px;
+    left: 5%;
+}
+
+/* .btn{
+    width: 90%;
+    height: 75px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px red solid;
+} */
+
+.answer{
+    font-size: 30px;
+    width: 90%;
+    height: 75px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px red solid;
+
+}
