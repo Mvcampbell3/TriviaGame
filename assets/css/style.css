@@ -23,7 +23,7 @@ header h1{
     -webkit-background-clip: text;
     color: transparent;
     animation-name: scroll;
-    animation-duration: 10s;
+    animation-duration: 30s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
