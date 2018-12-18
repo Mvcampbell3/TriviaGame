@@ -16,13 +16,13 @@ var q5 = new Question("Who has the longest total time on the ISS?", ["Scott Kell
 
 var q6 = new Question("How much time has she logged abord the space station?", ["370 days", "534 days", "746 days", "665 days"], "665 days");
 
-var q7 = new Question()
+var q7 = new Question("On average, how high is the ISS's orbit above Earth?", ["275 miles", "363 miles", "254 miles", "313 miles"], "254 miles");
 
-var q8 = new Question()
+var q8 = new Question("The ISS, A.K.A. the most expensive thing ever built, cost how much?", ["10 Billion", "12 Billion", "16 Billion", "150 Billion"], "150 Billion");
 
-var q9 = new Question()
+var q9 = new Question("The first piece of the ISS was launched in what year?", ["1998", "1999", "2000", "1995"], "1998")
 
-var q10 = new Question()
+var q10 = new Question("What year is the ISS mission expected to come to a close?", ["2025", "2032", "2037", "2028"], "2028")
 
 var game = {
 
