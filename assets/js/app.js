@@ -43,7 +43,7 @@ var game = {
                 document.getElementById(this.buttons[i]).addEventListener("click", this.checkAnswer);
             };
     
-            var timeLeft = 5;
+            var timeLeft = 30;
             $(".timer").text("30")
         
             this.timer = setInterval(function(){
@@ -96,7 +96,9 @@ var game = {
             $(".gameBox").addClass("flip");
             setTimeout(function(){
                 game.between();
-            }, 820);
+            // }, 820);
+            }, 1450);
+
         } else {
             console.log("wrong answer");
             clearInterval(game.timer);
@@ -107,7 +109,8 @@ var game = {
             $(".gameBox").addClass("flip");
             setTimeout(function(){
                 game.between();
-            }, 820);
+            // }, 820);
+            }, 1450);
             
         }
     },

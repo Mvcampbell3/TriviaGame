@@ -55,6 +55,7 @@ header h1{
     animation-name: flip;
     animation-duration: 2s;
     animation-fill-mode: forwards;
+    animation-timing-function: linear;
 }
 
 @keyframes flip{
