@@ -4,15 +4,29 @@ function Question(ask, answer, correct) {
     this.correct = correct;
 };
 
-var q1 = new Question("What is the capital of Florida?", ["Tallahasse", "Orlando", "Miami", "Tampa"], "Tallahasse");
+var q1 = new Question("The Internation Space Station (ISS) is how many feet long", ["312 ft.", "289 ft", "357 ft.", "373 ft."], "357 ft.");
 
-var q2 = new Question("Did Raging Al just Beat the Fuck out of Kevin Lee?", ["Yes", "Yes", "Yes", "Hell Yes"], "Hell Yes");
+var q2 = new Question("How many orbits of the Earth does the ISS make every 24 hours?", ["16", "9", "5", "19"], "16");
 
-var q3 = new Question("Who is going to the prelims now bitch?", ["Kevin Lee", "that guy in 1", "That guy in 1", "last guy in 1"], "Kevin Lee");
+var q3 = new Question("The ISS has been continuously occupied since when?", ["Sept. 2003", "Nov. 2000", "Jan. 2002", "Feb. 2001"], "Nov. 2000");
+
+var q4 = new Question("How many miles of wiring are on the ISS?", ["3 miles", "12 miles", "8 miles", "6 miles"], "8 miles");
+
+var q5 = new Question("Who has the longest total time on the ISS?", ["Scott Kelly", "Mark Kelly", "Peggy Whitson", "Mikhail Kornienko"], "Peggy Whitson");
+
+var q6 = new Question("How much time has she logged abord the space station?", ["370 days", "534 days", "746 days", "665 days"], "665 days");
+
+var q7 = new Question()
+
+var q8 = new Question()
+
+var q9 = new Question()
+
+var q10 = new Question()
 
 var game = {
 
-    questionArray: [q1, q2, q3],
+    questionArray: [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10],
     
     timer: null,
 
@@ -54,7 +68,11 @@ var game = {
                     game.wrongAnswers++;
                     game.whichQuestion++;
                     game.timeOut = true,
-                    game.between();
+                    $(".gameBox").addClass("flip");
+                    setTimeout(function(){
+                        game.between();
+                    // }, 820); this is if on default animation timing 
+                    }, 1450);// this is for linear animation timing
                 } else {
                     timeLeft = timeLeft - 1;
                     $(".timer").text(timeLeft);
@@ -96,8 +114,8 @@ var game = {
             $(".gameBox").addClass("flip");
             setTimeout(function(){
                 game.between();
-            // }, 820);
-            }, 1450);
+            // }, 820); this is if on default animation timing 
+            }, 1450);// this is for linear animation timing
 
         } else {
             console.log("wrong answer");
@@ -109,8 +127,8 @@ var game = {
             $(".gameBox").addClass("flip");
             setTimeout(function(){
                 game.between();
-            // }, 820);
-            }, 1450);
+            // }, 820); this is if on default animation timing 
+            }, 1450); //this is for linear animation timing
             
         }
     },

@@ -5,7 +5,7 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #666;
+    background-color: #333;
     user-select: none;
 }
 
@@ -18,7 +18,7 @@ header h1{
     text-align: center;
     padding: 30px 20px;
     font-size: 90px;
-    background: url("../images/scrollBG.png");
+    background: url("../images/scrollSky.png");
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -43,12 +43,12 @@ header h1{
 .gameBox{
     width: 600px;
     color: white;
-    background-color: black;
+    background-color: dodgerblue;
     margin: 0 auto;
     height: 450px;
     border: 4px white solid;
     position: relative;
-    box-shadow: 10px 10px 30px #333;
+    box-shadow: 10px 10px 30px #111;
 }
 
 .flip{
@@ -79,6 +79,10 @@ header h1{
     /*  */
 }
 
+.question {
+    font-size: 40px !important;
+}
+
 .topSection{
     display: none;
     /*  */
@@ -93,7 +97,7 @@ header h1{
 }
 
 .question{
-    font-size: 25px;
+    /* font-size: 20px; */
     text-align: center;
 }
 
@@ -120,7 +124,9 @@ header h1{
     margin: auto;
     align-items: center;
     justify-content: center;
-    border: 1px white solid;
+    border: 1px black solid;
+    background-color: white;
+    color: black;
 }
 
 .hidden{
@@ -135,9 +141,21 @@ header h1{
     bottom: 45px;
     left: calc(50% - 150px);
     text-align: center;
-    border: 1px white solid;
+    border: 1px black solid;
+    background-color: white;
+    color: black;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 50px;
+}
+
+.btn{
+    box-shadow: none;
+    transition: all, .25s;
+}
+
+.btn:hover{
+    box-shadow: 10px 10px 10px #111;
+    transition: all, .25s;
 }
