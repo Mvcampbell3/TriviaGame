@@ -4,7 +4,7 @@ function Question(ask, answer, correct) {
     this.correct = correct;
 };
 
-var q1 = new Question("What is the capital of Florida", ["Tallahasse", "Orlando", "Miami", "Tampa"], "Tallahasse");
+var q1 = new Question("What is the capital of Florida?", ["Tallahasse", "Orlando", "Miami", "Tampa"], "Tallahasse");
 
 var q2 = new Question("Did Raging Al just Beat the Fuck out of Kevin Lee?", ["Yes", "Yes", "Yes", "Hell Yes"], "Hell Yes");
 
@@ -17,8 +17,10 @@ var game = {
     timer: null,
 
     whichQuestion: 0,
+    displayWhich: 1,
 
     wasRight: false,
+    timeOut: false,
 
     buttons: ["button1", "button2", "button3", "button4"],
 
@@ -31,6 +33,8 @@ var game = {
     displayQuestion: function(){
 
         if (this.whichQuestion < this.questionArray.length) {
+            $(".questionNumber").text(game.displayWhich);
+            game.timeOut = false;
             $(".answerButtons").show();
             $(".question").text(this.questionArray[this.whichQuestion].ask);
             for (var i = 0; i < this.buttons.length; i++){
@@ -39,7 +43,7 @@ var game = {
                 document.getElementById(this.buttons[i]).addEventListener("click", this.checkAnswer);
             };
     
-            var timeLeft = 30;
+            var timeLeft = 5;
             $(".timer").text("30")
         
             this.timer = setInterval(function(){
@@ -47,7 +51,9 @@ var game = {
                     clearInterval(game.timer);
                     console.log("ran out of time");
                     // ran out of time
+                    game.wrongAnswers++;
                     game.whichQuestion++;
+                    game.timeOut = true,
                     game.between();
                 } else {
                     timeLeft = timeLeft - 1;
@@ -57,9 +63,15 @@ var game = {
             }, 1000);
     
         } else {
-            console.log("doingNothing")
-            $(".question").text("Game is over");
-        }
+            console.log("game over");
+            // Might want to make an EndGame method which does all of the stuff
+            $(".question").text("");
+            
+            $(".topSection").slideUp();
+            setTimeout(function(){
+                $(".question").html("<h2>Game Over</h2><br><h3> You got " + game.rightAnswers + " Right</h3><br><h3> You got " + game.wrongAnswers + " Wrong</h3>");
+            }, 500);
+        };
 
     },
 
@@ -78,32 +90,47 @@ var game = {
             console.log("Right Answer");
             game.whichQuestion++;
             game.rightAnswers++;
+            game.displayWhich++;
             game.wasRight = true;
             clearInterval(game.timer);
-            game.between();
+            $(".gameBox").addClass("flip");
+            setTimeout(function(){
+                game.between();
+            }, 820);
         } else {
             console.log("wrong answer");
             clearInterval(game.timer);
             game.whichQuestion++;
+            game.displayWhich++;
             game.wrongAnswers++;
             game.wasRight = false;
-            game.between();
+            $(".gameBox").addClass("flip");
+            setTimeout(function(){
+                game.between();
+            }, 820);
+            
         }
     },
 
     between: function() {
         $(".answerButtons").hide();
         if (game.wasRight) {
-            $(".question").text("You were Right!");
+            $(".question").text("You are Right!");
             $(".answer").text("");
         } else {
-            $(".question").text("You were Wrong!");
+            if (!game.timeOut) {
+            $(".question").text("You are Wrong!");
             $(".answer").text("");
+            } else {
+                $(".question").text("You ran out of Time!!!")
+                $(".answer").text("");
+            }
     
         };
         setTimeout(function(){
             game.displayQuestion();
-        }, 3000)
+            $(".gameBox").removeClass("flip");
+        }, 1500)
     },
 
     startGame: function() {
