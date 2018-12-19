@@ -16,7 +16,8 @@ h1, h2, h3, h4, h5, h6, p{
 .mainTitle{
     text-align: center;
     padding: 30px 20px;
-    font-size: 90px;
+    /* font-size: 90px; */
+    font-size: 6vw;
     background: url("../images/scrollSky.png");
     background-clip: text;
     -webkit-background-clip: text;
@@ -30,7 +31,8 @@ h1, h2, h3, h4, h5, h6, p{
 .mainTitle2{
     text-align: center;
     padding: 30px 20px;
-    font-size: 90px;
+    /* font-size: 90px; */
+    font-size: 6vw;
     background: url("../images/scrollBG.png");
     background-clip: text;
     -webkit-background-clip: text;
@@ -118,7 +120,7 @@ h1, h2, h3, h4, h5, h6, p{
     font-size: 40px;
 }
 
-.answerButtons{
+.answerArea{
     text-align: center;
     display: grid;
     align-items: center;
@@ -182,7 +184,7 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .hide{
-    margin-top: 40px;
+    margin: 30px;
 }
 
 .restart{
@@ -202,6 +204,41 @@ h1, h2, h3, h4, h5, h6, p{
 
 @media (max-width: 600px){
     .gameBox{
-        width: 350px;
+        width: 98%;
+        min-height: 500px;
     }
-}
+
+    .answerArea{
+        display: block;
+        position: static;
+        /* min-height: 400px; */
+        width: 100%;
+        padding: 20px 0;
+    }
+
+    .answer{
+        width: 90%;
+        margin: 5px auto;
+        height: 50px;
+    }
+
+    .question h2{
+        font-size: 35px;
+    }
+
+    .btn:hover, .answer:hover {
+        box-shadow: none;
+    }
+
+    .mainTitle{
+        animation-duration: 200s;
+        font-size: 8vw;
+    }
+
+    .mainTitle2{
+        animation-duration: 200s;
+        font-size: 8vw;
+    }
+
+    
+} 
