@@ -1,7 +1,6 @@
 body{
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
-    overflow: hidden;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -14,7 +13,7 @@ h1, h2, h3, h4, h5, h6, p{
     padding: 0;
 }
 
-header h1{
+.mainTitle{
     text-align: center;
     padding: 30px 20px;
     font-size: 90px;
@@ -23,7 +22,21 @@ header h1{
     -webkit-background-clip: text;
     color: transparent;
     animation-name: scroll;
-    animation-duration: 30s;
+    animation-duration: 90s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.mainTitle2{
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 90px;
+    background: url("../images/scrollBG.png");
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation-name: scroll;
+    animation-duration: 90s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
@@ -34,7 +47,7 @@ header h1{
     }
 
     100%{
-        background-position: 100% 0%;
+        background-position: 425% 0%;
     }
 }
 
@@ -79,9 +92,9 @@ header h1{
     /*  */
 }
 
-.question {
+/* .question {
     font-size: 40px !important;
-}
+} */
 
 .topSection{
     display: none;
@@ -99,6 +112,10 @@ header h1{
 .question{
     /* font-size: 20px; */
     text-align: center;
+}
+
+.question h2{
+    font-size: 40px;
 }
 
 .answerButtons{
@@ -133,13 +150,17 @@ header h1{
     display: none;
 }
 
+.startGamePlace{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
 
-#startButton{
+
+.btn{
     width: 300px;
-    height: 100px;
-    position: absolute;
-    bottom: 45px;
-    left: calc(50% - 150px);
+    height: 150px;
     text-align: center;
     border: 1px black solid;
     background-color: white;
@@ -150,12 +171,37 @@ header h1{
     font-size: 50px;
 }
 
-.btn{
+.btn, .answer{
     box-shadow: none;
     transition: all, .25s;
 }
 
-.btn:hover{
+.btn:hover, .answer:hover{
     box-shadow: 10px 10px 10px #111;
     transition: all, .25s;
+}
+
+.hide{
+    margin-top: 40px;
+}
+
+.restart{
+    display: none;
+    height: fit-content;
+    padding: 10px;
+    margin-top: 40px;
+    width: 250px;
+    text-align: center;
+    border: 1px black solid;
+    background-color: white;
+    color: black;
+    font-size: 50px;
+}
+
+
+
+@media (max-width: 600px){
+    .gameBox{
+        width: 350px;
+    }
 }
