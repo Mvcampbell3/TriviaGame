@@ -53,9 +53,11 @@ var game = {
 
     ISSArray: [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10],
     PresArray: [q11, q12, q13, q14, q15, q16, q17, q18, q19, q20],
+    // PresArray: [q11],
+
 
     questionArray: [],
-    
+
     timer: null,
 
     whichQuestion: 0,
@@ -73,24 +75,24 @@ var game = {
     wrongAnswers: 0,
 
     // Methods
-    displayQuestion: function(){
+    displayQuestion: function () {
 
         if (this.whichQuestion < this.questionArray.length) {
             $(".questionNumber").text(game.displayWhich);
             game.timeOut = false;
             $(".answerButtons").show();
-            $(".question").html("<h2>"+this.questionArray[this.whichQuestion].ask+"</h2>");
-            for (var i = 0; i < this.buttons.length; i++){
+            $(".question").html("<h2>" + this.questionArray[this.whichQuestion].ask + "</h2>");
+            for (var i = 0; i < this.buttons.length; i++) {
                 $("#" + this.buttons[i]).text(this.questionArray[this.whichQuestion].answer[i]);
                 // had to use js not jq because it was triggering more than one click. probably from how jq handles class tags and on click
                 document.getElementById(this.buttons[i]).addEventListener("click", this.checkAnswer);
             };
-    
+
             var timeLeft = 30;
             $(".timer").text("30")
-        
-            this.timer = setInterval(function(){
-                if (timeLeft <=0) {
+
+            this.timer = setInterval(function () {
+                if (timeLeft <= 0) {
                     clearInterval(game.timer);
                     console.log("ran out of time");
                     // ran out of time
@@ -99,34 +101,34 @@ var game = {
                     game.whichQuestion++;
                     game.displayWhich++;
                     game.timeOut = true,
-                    game.wasRight = false,
-                    $(".gameBox").addClass("flip");
-                    setTimeout(function(){
+                        game.wasRight = false,
+                        $(".gameBox").addClass("flip");
+                    setTimeout(function () {
                         game.between();
-                    // }, 820); this is if on default animation timing 
+                        // }, 820); this is if on default animation timing 
                     }, 1450);// this is for linear animation timing
                 } else {
                     timeLeft = timeLeft - 1;
                     $(".timer").text(timeLeft);
                 };
-    
+
             }, 1000);
-    
+
         } else {
             console.log("game over");
             // Might want to make an EndGame method which does all of the stuff
             $(".question").text("");
-            
+
             $(".topSection").slideUp();
-            setTimeout(function(){
+            setTimeout(function () {
                 $(".question").html("<h2>Game Over</h2><br><h2> You got " + game.rightAnswers + " Right</h2><br><h2> You got " + game.wrongAnswers + " Wrong</h2>");
-                $(".startGamePlace").show();
+                // $(".startGamePlace").show();
                 $(".restart").show()
             }, 500);
         };
     },
 
-    checkAnswer: function() {
+    checkAnswer: function () {
         console.log($(this));
         console.log(this);
         console.log($(this).text());
@@ -137,7 +139,7 @@ var game = {
 
         var guess = this.innerText;
 
-        if  (guess === game.questionArray[game.whichQuestion].correct) {
+        if (guess === game.questionArray[game.whichQuestion].correct) {
             console.log("Right Answer");
             game.oldRight = game.questionArray[game.whichQuestion].correct;
             game.whichQuestion++;
@@ -146,9 +148,9 @@ var game = {
             game.wasRight = true;
             clearInterval(game.timer);
             $(".gameBox").addClass("flip");
-            setTimeout(function(){
+            setTimeout(function () {
                 game.between();
-            // }, 820); this is if on default animation timing 
+                // }, 820); this is if on default animation timing 
             }, 1450);// this is for linear animation timing
 
         } else {
@@ -160,15 +162,15 @@ var game = {
             game.wrongAnswers++;
             game.wasRight = false;
             $(".gameBox").addClass("flip");
-            setTimeout(function(){
+            setTimeout(function () {
                 game.between();
-            // }, 820); this is if on default animation timing 
+                // }, 820); this is if on default animation timing 
             }, 1450); //this is for linear animation timing
-            
+
         }
     },
 
-    between: function() {
+    between: function () {
         $(".answerButtons").hide();
         if (game.wasRight) {
             $(".question").html("<h2>You are Right!</h2>" + "<br>" + "<h2> Correct Answer was:</h2><br><h2>" + game.oldRight + "</h2>");
@@ -182,34 +184,40 @@ var game = {
                 $(".answer").text("");
             }
         };
-        setTimeout(function(){
+        setTimeout(function () {
             game.displayQuestion();
             $(".gameBox").removeClass("flip");
         }, 2500);
     },
 
-    restart: function(){
+    restart: function () {
         $(".hide").show();
         $(".answerButtons").attr("class", "answerButtons hidden");
         $(".questionArea").hide();
         $(".restart").hide();
+        $(".startGamePlace").show();
+        $('.changeTitle').text("Trivia Game");
+        $(".changeTitle").attr("class", "changeTitle mainTitle");
         game.questionArray = [];
         game.rightAnswers = 0;
         game.wrongAnswers = 0;
         game.whichQuestion = 0;
         game.displayWhich = 1;
+
     },
 
-    startGame: function() {
-        switch ($(this).attr("value")){
+    startGame: function () {
+        switch ($(this).attr("value")) {
             case "pres":
                 game.questionArray = game.PresArray;
-                $(".mainTitle").text("U.S. President Trivia");
-                $(".mainTitle").addClass("mainTitle2").removeClass("mainTitle")
+                $(".changeTitle").text("U.S. President Trivia");
+                $(".changeTitle").attr("class", "changeTitle mainTitle2")
                 break;
             case "iss":
                 game.questionArray = game.ISSArray;
-                $(".mainTitle").text("Space Station Trivia");
+                $(".changeTitle").text("Space Station Trivia");
+                $(".changeTitle").attr("class", "changeTitle mainTitle")
+
                 break;
             default:
                 console.log("switch startGame not working as expected");
@@ -224,8 +232,10 @@ var game = {
         game.displayQuestion();
     }
 
-} //End of object
+} //End of game object
 
+
+// Event Listeners
 
 $(".btn").on("click", game.startGame);
 
