@@ -1,3 +1,4 @@
+// Constructor for question objects
 function Question(ask, answer, correct) {
     this.ask = ask;
     this.answer = answer;
@@ -53,30 +54,19 @@ var game = {
 
     ISSArray: [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10],
     PresArray: [q11, q12, q13, q14, q15, q16, q17, q18, q19, q20],
-    // PresArray: [q11],
-
-
-    questionArray: [],
-
-    timer: null,
-
-    whichQuestion: 0,
-    displayWhich: 1,
-
-    wasRight: false,
-    timeOut: false,
-
-    oldRight: "",
-
-    buttons: ["button1", "button2", "button3", "button4"],
-
-    rightAnswers: 0,
-
+    questionArray: [],//will push one of the above arrays into it
+    timer: null,//declaring here so can use throughout obj
+    whichQuestion: 0,//shows place in array
+    displayWhich: 1,//puts the question number on the page
+    wasRight: false,//stores if was right for between method
+    timeOut: false,//stores what kind of wrong you were
+    oldRight: "",//stores the previous question correct answer
+    buttons: ["button1", "button2", "button3", "button4"],//place for the anwsers' text to go
+    rightAnswers: 0,//scoreboard
     wrongAnswers: 0,
-
     // Methods
     displayQuestion: function () {
-
+        // takes question object from array and displays it to player
         if (this.whichQuestion < this.questionArray.length) {
             $(".questionNumber").text(game.displayWhich);
             game.timeOut = false;
@@ -84,25 +74,22 @@ var game = {
             $(".question").html("<h2>" + this.questionArray[this.whichQuestion].ask + "</h2>");
             for (var i = 0; i < this.buttons.length; i++) {
                 $("#" + this.buttons[i]).text(this.questionArray[this.whichQuestion].answer[i]);
-                // had to use js not jq because it was triggering more than one click. probably from how jq handles class tags and on click
                 document.getElementById(this.buttons[i]).addEventListener("click", this.checkAnswer);
+                // add event listener to each button
             };
-
             var timeLeft = 30;
             $(".timer").text("30")
-
             this.timer = setInterval(function () {
                 if (timeLeft <= 0) {
                     clearInterval(game.timer);
-                    console.log("ran out of time");
                     // ran out of time
                     game.oldRight = game.questionArray[game.whichQuestion].correct;
                     game.wrongAnswers++;
                     game.whichQuestion++;
                     game.displayWhich++;
                     game.timeOut = true,
-                        game.wasRight = false,
-                        $(".gameBox").addClass("flip");
+                    game.wasRight = false,
+                    $(".gameBox").addClass("flip");
                     setTimeout(function () {
                         game.between();
                         // }, 820); this is if on default animation timing 
@@ -115,32 +102,25 @@ var game = {
             }, 1000);
 
         } else {
-            console.log("game over");
-            // Might want to make an EndGame method which does all of the stuff
+            // Game Over
             $(".question").text("");
-
             $(".topSection").slideUp();
             setTimeout(function () {
                 $(".question").html("<h2>Game Over</h2><br><h2> You got " + game.rightAnswers + " Right</h2><br><h2> You got " + game.wrongAnswers + " Wrong</h2>");
-                // $(".startGamePlace").show();
                 $(".restart").show()
             }, 500);
         };
     },
 
     checkAnswer: function () {
-        console.log($(this));
-        console.log(this);
-        console.log($(this).text());
-        console.log(game.questionArray[game.whichQuestion].correct + " correct");
         for (var i = 0; i < game.buttons.length; i++) {
             document.getElementById(game.buttons[i]).removeEventListener("click", game.checkAnswer);
+            // stops cheaters who push buttons more than once
         };
 
         var guess = this.innerText;
 
         if (guess === game.questionArray[game.whichQuestion].correct) {
-            console.log("Right Answer");
             game.oldRight = game.questionArray[game.whichQuestion].correct;
             game.whichQuestion++;
             game.rightAnswers++;
@@ -154,7 +134,6 @@ var game = {
             }, 1450);// this is for linear animation timing
 
         } else {
-            console.log("wrong answer");
             clearInterval(game.timer);
             game.oldRight = game.questionArray[game.whichQuestion].correct;
             game.whichQuestion++;

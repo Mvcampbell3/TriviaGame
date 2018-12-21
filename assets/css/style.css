@@ -1,7 +1,6 @@
 body{
     height: 100vh;
     width: 100vw;
-    /* overflow: hidden; */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -17,7 +16,6 @@ h1, h2, h3, h4, h5, h6, p{
 .mainTitle{
     text-align: center;
     padding: 30px 20px;
-    /* font-size: 90px; */
     font-size: 6vw;
     background: url("../images/scrollSky.png");
     background-clip: text;
@@ -32,7 +30,6 @@ h1, h2, h3, h4, h5, h6, p{
 .mainTitle2{
     text-align: center;
     padding: 30px 20px;
-    /* font-size: 90px; */
     font-size: 6vw;
     background: url("../images/scrollBG.png");
     background-clip: text;
@@ -92,16 +89,10 @@ h1, h2, h3, h4, h5, h6, p{
     width: 90%;
     margin: 2em auto 0 auto;
     display: none;
-    /*  */
 }
-
-/* .question {
-    font-size: 40px !important;
-} */
 
 .topSection{
     display: none;
-    /*  */
 }
 
 .flex{
@@ -113,7 +104,6 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .question{
-    /* font-size: 20px; */
     text-align: center;
 }
 
@@ -134,7 +124,6 @@ h1, h2, h3, h4, h5, h6, p{
     height: 200px;
     left: 5%;
 }
-
 
 .answer{
     display: flex;
@@ -160,7 +149,6 @@ h1, h2, h3, h4, h5, h6, p{
     justify-content: space-evenly;
     height: 100%;
 }
-
 
 .btn{
     width: 300px;
@@ -206,7 +194,6 @@ h1, h2, h3, h4, h5, h6, p{
     }
 }
 
-
 @media (max-width: 600px){
     .gameBox{
         width: 98%;
@@ -216,7 +203,6 @@ h1, h2, h3, h4, h5, h6, p{
     .answerArea{
         display: block;
         position: static;
-        /* min-height: 400px; */
         width: 100%;
         padding: 20px 0;
     }
@@ -231,7 +217,6 @@ h1, h2, h3, h4, h5, h6, p{
         font-size: 35px;
     }
 
-
     .mainTitle{
         animation-duration: 200s;
         font-size: 8vw;
@@ -241,8 +226,6 @@ h1, h2, h3, h4, h5, h6, p{
         animation-duration: 200s;
         font-size: 8vw;
     }
-
-    
 } 
 
 @media (max-width: 350px){
@@ -257,5 +240,4 @@ h1, h2, h3, h4, h5, h6, p{
     .gameBox{
         height: 100vh;
     }
-
 }   
